@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo編集</title>
+</head>
+<body>
+    <h1><%= todo.content %>を編集</h1>
+    <form action="/update/<%= todo.id %>" method="post">
+        <input type="text" value="<%= todo.content %>" name="todoUpdate">
+        <input type="submit" value="更新">
+    </form>
+</body>
+</html>

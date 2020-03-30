@@ -60,9 +60,33 @@ app.delete('/:id',(req,res)=>{
 });
 
 //編集
+app.get('/edit/:id',(req,res)=>{
+  db.todo.findAll({
+    where:{
+      id:req.params.id
+    }
+  }).then((results)=>{
+    res.render('edit.ejs',{todo: results[0]});
+  });
+  //urlに含まれたidを持つ要素を探索し、それをedit.ejsでレンダリングする
+});
 
 //更新
-
+app.post('/update/:id',(req,res)=>{
+  const update_value = {
+    content:req.body.todoUpdate
+  };
+  const update_place = {
+    where:{
+      id:req.params.id
+    }
+  };
+  db.todo.update(update_value,update_place).then((results)=>{
+    res.redirect('/');
+  });
+  //idを探索する
+  //一致するidの要素に対し、edit.ejsで入力された値にアップデートする
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
