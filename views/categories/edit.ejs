@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カテゴリー編集</title>
+</head>
+<body>
+    <h1><%= category.name %>を編集</h1>
+    <form action="/categories/update/<%= category.id %>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="text" value="<%= category.name %>" name="categoryName">
+        <input type="submit" value="更新">
+    </form>
+</body>
+</html>
