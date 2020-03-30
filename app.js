@@ -61,27 +61,23 @@ app.delete('/:id',(req,res)=>{
 
 //編集
 app.get('/edit/:id',(req,res)=>{
-  db.todo.findAll({
-    where:{
-      id:req.params.id
-    }
-  }).then((results)=>{
-    res.render('edit.ejs',{todo: results[0]});
+  db.todo.findByPk(req.params.id).then((results) =>{
+    res.render('edit.ejs',{todo:results});
   });
   //urlに含まれたidを持つ要素を探索し、それをedit.ejsでレンダリングする
 });
 
 //更新
-app.post('/update/:id',(req,res)=>{
-  const update_value = {
-    content:req.body.todoUpdate
+app.put('/update/:id',(req,res)=>{
+  const params = {
+    content:req.body.todoContent
   };
-  const update_place = {
+  const filter = {
     where:{
       id:req.params.id
     }
   };
-  db.todo.update(update_value,update_place).then((results)=>{
+  db.todo.update(params,filter).then((results)=>{
     res.redirect('/');
   });
   //idを探索する
