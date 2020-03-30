@@ -30,12 +30,14 @@ app.use(methodOverride(function (req, res) {
 //ER図(エンティティー・リレーション図)を簡単に実現
 const db = require('./models/index');
 
+//一覧表示
 app.get('/',(req,res)=>{
   db.todo.findAll({}).then((results) => {
     res.render('index.ejs',{todos: results});
   });
 });
 
+//追加
 app.post('/',(req,res)=>{
   const params = {
     content:req.body.todoContent
@@ -45,6 +47,7 @@ app.post('/',(req,res)=>{
   });
 });
 
+//削除
 app.delete('/:id',(req,res)=>{
   const filter = {
     where:{
@@ -55,6 +58,11 @@ app.delete('/:id',(req,res)=>{
     res.redirect('/');
   });
 });
+
+//編集
+
+//更新
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
