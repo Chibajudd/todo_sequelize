@@ -18,6 +18,10 @@
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="削除">
       </form>
+
+      <form action="/edit/<%= todo.id %>" method="get">
+        <input type="submit" value="編集">
+      </form>
     <% }) %>
   </ul>
 
